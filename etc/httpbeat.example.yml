@@ -11,7 +11,7 @@ httpbeat:
       cron: "@every 5s"
 
       # The URL endpoint to call by Httpbeat
-      url: http://httpbin.org/headers
+      url: http://localhost
 
       # HTTP method to use.
       # Possible options are:
@@ -33,7 +33,7 @@ httpbeat:
       # Type to be published in the 'type' field. For Elasticsearch output,
       # the type defines the document type these entries should be stored
       # in. Default: httpbeat
-      document_type: jolokia
+      document_type: httpbeat
 
       # Optional additional headers to send to the endpoint
       headers:
@@ -42,15 +42,15 @@ httpbeat:
       # Optional additional fields. These field can be freely picked
       # to add additional information
 
-      fields:
-        host: test
+     # fields:
+     #   host: test
     -
       # Optional cron expression, defines when to poll the URL endpoint.
       # Default is every 1 minute.
       cron: "@every 10s"
 
       # The URL endpoint to call by Httpbeat
-      url: http://httpbin.org/user-agent
+      url: http://localhost
 
       # HTTP method to use.
       # Possible options are:
@@ -63,11 +63,11 @@ httpbeat:
       method: get
 
       # Optional basic authentication
-      basic_auth:
+      #basic_auth:
         # Basic authentication username
-        username: admin
+       # username: admin
         # Basic authentication password
-        password: admin
+       # password: admin
 
       # Optional proxy server URL
       # proxy_url: http://proxy:3128
@@ -75,7 +75,7 @@ httpbeat:
       # Type to be published in the 'type' field. For Elasticsearch output,
       # the type defines the document type these entries should be stored
       # in. Default: httpbeat
-      document_type: jolokia
+      document_type: httpbeat
 
       # Optional additional headers to send to the endpoint
       headers:
@@ -84,8 +84,8 @@ httpbeat:
       # Optional additional fields. These field can be freely picked
       # to add additional information
 
-      fields:
-        host: test2
+     # fields:
+     #   host: test2
 ############################# Shipper ############################################
 shipper:
 
@@ -108,9 +108,9 @@ output:
   # Elasticsearch as output
   # Options:
   # host, port: where Elasticsearch is listening on
-  #elasticsearch:
+  elasticsearch:
     #enabled: true
-    #hosts: ["localhost:9200"]
+    hosts: ["localhost:9200"]
 
   # Redis as output
   # Options:
@@ -126,18 +126,19 @@ output:
   # filename: name of the files
   # rotate_every_kb: maximum size of the files in path
   # number of files: maximum number of files in path
-  file:
-    enabled: true
-    path: "/tmp/httpbeat"
-    filename: httpbeat
+  #file:
+   # enabled: true
+    #path: "/tmp/httpbeat"
+   # filename: httpbeat
   #  rotate_every_kb: 1000
   #  number_of_files: 7
 
 logging:
   level: debug
   files:
-    path: /tmp/log
-    name: foo
+    path: /var/log/httpbeat
+    name: httpbeat.log
+  
 
   # enable file rotation with default configuration
   to_files: true
